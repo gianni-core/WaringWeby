@@ -78,7 +78,6 @@
 
 /* ================================
    🔧 CONFIGURATION MODIFIABLE
-   Modifie seulement cette partie
 ================================ */
 
 const CONFIG = {
@@ -94,29 +93,30 @@ const CONFIG = {
 
 /* ================================
    ⚙️ SYSTEME AUTOMATIQUE
-   (Ne pas modifier si inutile)
 ================================ */
 
 document.getElementById("title").textContent = CONFIG.title;
 document.getElementById("description").textContent = CONFIG.description;
 
 const statusBox = document.getElementById("statusBox");
+const instructionsBox = document.getElementById("instructionsBox");
 
 if (CONFIG.status === "OK") {
     statusBox.textContent = "Statut : OK";
     statusBox.classList.add("ok");
-} else {
+    instructionsBox.style.display = "none"; // cache instructions
+} 
+else if (CONFIG.status === "ERROR") {
     statusBox.textContent = "Statut : ERREUR";
     statusBox.classList.add("error");
+
+    // Affiche les instructions
+    CONFIG.instructions.forEach(instruction => {
+        const p = document.createElement("p");
+        p.textContent = instruction;
+        instructionsBox.appendChild(p);
+    });
 }
-
-const instructionsBox = document.getElementById("instructionsBox");
-
-CONFIG.instructions.forEach(instruction => {
-    const p = document.createElement("p");
-    p.textContent = instruction;
-    instructionsBox.appendChild(p);
-});
 
 </script>
 
