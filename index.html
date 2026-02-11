@@ -1,0 +1,124 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>WaringWeby</title>
+
+<style>
+    body {
+        margin: 0;
+        font-family: Arial, sans-serif;
+        background: #f2f2f2;
+        color: #222;
+        text-align: center;
+    }
+
+    header {
+        background: #2d89ff;
+        color: white;
+        padding: 20px;
+    }
+
+    .container {
+        margin: 40px auto;
+        max-width: 800px;
+        padding: 20px;
+        background: white;
+        border-radius: 8px;
+        box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+    }
+
+    .status {
+        padding: 10px;
+        border-radius: 5px;
+        font-weight: bold;
+        margin-top: 15px;
+    }
+
+    .ok {
+        background: #d4edda;
+        color: #155724;
+    }
+
+    .error {
+        background: #f8d7da;
+        color: #721c24;
+    }
+
+    footer {
+        margin-top: 40px;
+        padding: 20px;
+        font-size: 14px;
+        opacity: 0.6;
+    }
+</style>
+</head>
+
+<body>
+
+<header>
+    <h1>WaringWeby</h1>
+</header>
+
+<div class="container">
+    <h2 id="title"></h2>
+    <p id="description"></p>
+
+    <div id="statusBox" class="status"></div>
+
+    <div id="instructionsBox"></div>
+</div>
+
+<footer>
+    © 2026 WaringWeby
+</footer>
+
+<script>
+
+/* ================================
+   🔧 CONFIGURATION MODIFIABLE
+   Modifie seulement cette partie
+================================ */
+
+const CONFIG = {
+    title: "Système Principal",
+    description: "Bienvenue sur WaringWeby.",
+    status: "OK", // "OK" ou "ERROR"
+    instructions: [
+        "Instruction 1 : Vérifier le système.",
+        "Instruction 2 : Surveiller les logs.",
+        "Instruction 3 : Redémarrer si nécessaire."
+    ]
+};
+
+/* ================================
+   ⚙️ SYSTEME AUTOMATIQUE
+   (Ne pas modifier si inutile)
+================================ */
+
+document.getElementById("title").textContent = CONFIG.title;
+document.getElementById("description").textContent = CONFIG.description;
+
+const statusBox = document.getElementById("statusBox");
+
+if (CONFIG.status === "OK") {
+    statusBox.textContent = "Statut : OK";
+    statusBox.classList.add("ok");
+} else {
+    statusBox.textContent = "Statut : ERREUR";
+    statusBox.classList.add("error");
+}
+
+const instructionsBox = document.getElementById("instructionsBox");
+
+CONFIG.instructions.forEach(instruction => {
+    const p = document.createElement("p");
+    p.textContent = instruction;
+    instructionsBox.appendChild(p);
+});
+
+</script>
+
+</body>
+</html>
